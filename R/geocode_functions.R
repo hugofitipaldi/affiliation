@@ -118,7 +118,7 @@ get_geodata_from_json_nominatim <- function(geodata_json) {
 geocode_nominatim <- function(search_query, country = NULL, language = "en",
                               fields = "coordinates", email) {
 
-  search_query <- paste0(tail(unlist(strsplit(test, ",")), 2)[1], ",", tail(unlist(strsplit(test, ",")), 1))
+  search_query <- paste0(tail(unlist(strsplit(search_query, ",")), 2)[1], ",", tail(unlist(strsplit(search_query, ",")), 1))
   # construct url for geocoding
   url_geocode <- url_nominatim_search(search_query, country, language, email)
   # get data from nominatim
