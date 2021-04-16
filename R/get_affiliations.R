@@ -14,8 +14,8 @@
 #' @export
 #'
 #' @examples
-#' GET_Affiliations(query = '30237159')
-#' GET_Affiliations(query = '30237159', format.long = TRUE)
+#' get_affiliations(query = '30237159')
+#' get_affiliations(query = '30237159', format.long = TRUE)
 #'
 
 get_affiliations <- function(query, email = NULL, format.long = FALSE) {

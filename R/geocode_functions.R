@@ -13,7 +13,7 @@
 #'
 #'
 #' @return This function returns a character string with the name of the country
-#'
+#' @export
 #'
 
 url_nominatim_search <- function(search_query_url, country_url,
@@ -49,7 +49,7 @@ url_nominatim_search <- function(search_query_url, country_url,
 #' @author Hugo Fitipaldi
 #'
 #' @return
-#'
+#' @export
 #'
 
 get_geodata_from_json_nominatim <- function(geodata_json) {
@@ -113,7 +113,7 @@ get_geodata_from_json_nominatim <- function(geodata_json) {
 #' @author Hugo Fitipaldi
 #'
 #' @return This function returns a data frame with searched query, latitude, longitude and assigned country
-#'
+#' @export
 #'
 geocode_nominatim <- function(search_query, country = NULL, language = "en",
                               fields = "coordinates", email) {

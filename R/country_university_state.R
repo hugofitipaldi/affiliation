@@ -10,7 +10,7 @@
 #'
 #'
 #' @return This function returns a character string with the name of the country
-#'
+#' @export
 #' @examples
 #' detecting_country_country("Lund University Diabetes Centre, Malmö, Skåne, Sweden")
 #'
@@ -48,7 +48,7 @@ detecting_country_country <- function(x) {
 #'
 #'
 #' @return This function returns a character string with the name of the country
-#'
+#' @export
 #' @examples
 #' detecting_country_university("Lund University Diabetes Centre, Malmö, Skåne, Sweden")
 #'
@@ -82,7 +82,7 @@ detecting_country_university <- function(x) {
 #'
 #'
 #' @return This function returns a character string with the name of the country
-#'
+#' @export
 #' @examples
 #' detecting_country_state("Lund University Diabetes Centre, Malmö, Skåne, Sweden")
 #'
