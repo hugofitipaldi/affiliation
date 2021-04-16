@@ -1,5 +1,3 @@
-#'
-#'
 #' Matches country names on free text affiliation field
 #'
 #' This function was designed to internal use in the package. The aim is to find a match of a country name on the free-text affiliation field.
@@ -13,7 +11,7 @@
 #'
 #'
 #' @return This function returns a character string with the name of the country
-#' @export
+#' @export url_nominatim_search
 #'
 
 url_nominatim_search <- function(search_query_url, country_url,
@@ -49,7 +47,7 @@ url_nominatim_search <- function(search_query_url, country_url,
 #' @author Hugo Fitipaldi
 #'
 #' @return
-#' @export
+#' @export get_geodata_from_json_nominatim
 #'
 
 get_geodata_from_json_nominatim <- function(geodata_json) {
@@ -113,14 +111,14 @@ get_geodata_from_json_nominatim <- function(geodata_json) {
 #' @author Hugo Fitipaldi
 #'
 #' @return This function returns a data frame with searched query, latitude, longitude and assigned country
-#' @export
+#' @export geocode_nominatim
 #'
 geocode_nominatim <- function(search_query, country = NULL, language = "en",
                               fields = "coordinates", email) {
 
   search_query <- paste0(tail(unlist(strsplit(search_query, ",")), 2)[1], ",", tail(unlist(strsplit(search_query, ",")), 1))
   # construct url for geocoding
-  url_geocode <- url_nominatim_search(search_query, country, language, email)
+  url_geocode <- affiliation::url_nominatim_search(search_query, country, language, email)
   # get data from nominatim
   # wait 3 seconds between each call
   geodata_json <- list()
@@ -138,7 +136,7 @@ geocode_nominatim <- function(search_query, country = NULL, language = "en",
                               stringsAsFactors = FALSE)
   names(geodata_df) <- "search query"
   rownames(geodata_df) <- NULL
-  geodata_df[, 2:17] <- get_geodata_from_json_nominatim(geodata_json)
+  geodata_df[, 2:17] <- affiliation::get_geodata_from_json_nominatim(geodata_json)
   geodata_df_query <- data.frame(search_query = geodata_df[, 1],
                                  stringsAsFactors = FALSE)
   geodata_df_coordinates <- geodata_df[, 2:3]

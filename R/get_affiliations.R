@@ -5,13 +5,13 @@
 #' This function was designed to
 #'
 #' @param query selects which data set from CSSS you want to download: "national" (default), "county" or "postcode"
-#' @param email
-#' @param format.long
+#' @param email your email to access
+#' @param format.long if you want the format of the data.frame to be long or wide
 #'
 #' @author Hugo Fitipaldi
 #'
 #' @return This function returns a \code{data.frame}
-#' @export
+#' @export get_affiliations
 #'
 #' @examples
 #' get_affiliations(query = '30237159')
@@ -53,23 +53,23 @@ get_affiliations <- function(query, email = NULL, format.long = FALSE) {
   if (!is.null(email)){
 
     for(i in 1:nrow(data_long)) {
-      if (!is.na(data_long$Affiliation[i]) & !is.na(affiliation:::geocode_nominatim(data_long$Affiliation[i], email = email)$country_match)){
-        data_long$Affiliation[i] <-  affiliation:::geocode_nominatim(data_long$Affiliation[i], email = email)$country_match}
+      if (!is.na(data_long$Affiliation[i]) & !is.na(affiliation::geocode_nominatim(data_long$Affiliation[i], email = email)$country_match)){
+        data_long$Affiliation[i] <-  affiliation::geocode_nominatim(data_long$Affiliation[i], email = email)$country_match}
     }
 
     for(i in 1:nrow(data_long)) {
-      if (!is.na(data_long$Affiliation[i]) & affiliation:::detecting_country_country(data_long$Affiliation[i]) != ""){
-        data_long$Affiliation[i] <-  affiliation:::detecting_country_country(data_long$Affiliation[i])}
+      if (!is.na(data_long$Affiliation[i]) & affiliation::detecting_country_country(data_long$Affiliation[i]) != ""){
+        data_long$Affiliation[i] <-  affiliation::detecting_country_country(data_long$Affiliation[i])}
     }
 
     for(i in 1:nrow(data_long)) {
-      if (!is.na(data_long$Affiliation[i]) & affiliation:::detecting_country_university(data_long$Affiliation[i]) != ""){
-        data_long$Affiliation[i] <-  affiliation:::detecting_country_university(data_long$Affiliation[i])}
+      if (!is.na(data_long$Affiliation[i]) & affiliation::detecting_country_university(data_long$Affiliation[i]) != ""){
+        data_long$Affiliation[i] <-  affiliation::detecting_country_university(data_long$Affiliation[i])}
     }
 
     for(i in 1:nrow(data_long)) {
-      if (!is.na(data_long$Affiliation[i]) & affiliation:::detecting_country_state(data_long$Affiliation[i]) != ""){
-        data_long$Affiliation[i] <-  affiliation:::detecting_country_state(data_long$Affiliation[i])}
+      if (!is.na(data_long$Affiliation[i]) & affiliation::detecting_country_state(data_long$Affiliation[i]) != ""){
+        data_long$Affiliation[i] <-  affiliation::detecting_country_state(data_long$Affiliation[i])}
     }
 
     data_wide <- tidyr::spread(data_long, aff_number, Affiliation)
@@ -96,18 +96,18 @@ get_affiliations <- function(query, email = NULL, format.long = FALSE) {
     } else {
 
       for(i in 1:nrow(data_long)) {
-        if (!is.na(data_long$Affiliation[i]) & affiliation:::detecting_country_country(data_long$Affiliation[i]) != ""){
-          data_long$Affiliation[i] <-  affiliation:::detecting_country_country(data_long$Affiliation[i])}
+        if (!is.na(data_long$Affiliation[i]) & affiliation::detecting_country_country(data_long$Affiliation[i]) != ""){
+          data_long$Affiliation[i] <-  affiliation::detecting_country_country(data_long$Affiliation[i])}
         }
 
       for(i in 1:nrow(data_long)) {
-        if (!is.na(data_long$Affiliation[i]) & affiliation:::detecting_country_university(data_long$Affiliation[i]) != ""){
-          data_long$Affiliation[i] <-  affiliation:::detecting_country_university(data_long$Affiliation[i])}
+        if (!is.na(data_long$Affiliation[i]) & affiliation::detecting_country_university(data_long$Affiliation[i]) != ""){
+          data_long$Affiliation[i] <-  affiliation::detecting_country_university(data_long$Affiliation[i])}
         }
 
       for(i in 1:nrow(data_long)) {
-        if (!is.na(data_long$Affiliation[i]) & affiliation:::detecting_country_state(data_long$Affiliation[i]) != ""){
-          data_long$Affiliation[i] <-  affiliation:::detecting_country_state(data_long$Affiliation[i])}
+        if (!is.na(data_long$Affiliation[i]) & affiliation::detecting_country_state(data_long$Affiliation[i]) != ""){
+          data_long$Affiliation[i] <-  affiliation::detecting_country_state(data_long$Affiliation[i])}
         }
 
       data_wide <- tidyr::spread(data_long, aff_number, Affiliation)
