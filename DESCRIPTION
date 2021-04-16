@@ -1,12 +1,11 @@
 Package: affiliation
-Title: What the Package Does (One Line, Title Case)
+Title: Extract affiliation locations from co-authorship lists in scientific publications.
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Hugo",
+           family = "Fitipaldi",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+           email = "hugofitipaldi@gmail.com")
 Description: What the package does (one paragraph).
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
