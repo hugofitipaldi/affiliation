@@ -1,27 +1,27 @@
 #' Retrieve and recognize affiliation and country of affiliation from PubMed
 #'
-#' Identifies country based on affiliation free text field
+#' Identifies country based on affiliation free-text field
 #'
-#' This function was designed to
+#' This function was designed retrieve and pre-process the affiliation field of PubMed publications and to recognize the specific country of affiliation.
 #'
-#' @param query selects which data set from CSSS you want to download: "national" (default), "county" or "postcode"
-#' @param email your email to access
-#' @param format.long if you want the format of the data.frame to be long or wide
+#' @param PMID PubMed IDentifier of the publication you wish to query
+#' @param email your email to access the OpenStreetMap API (if you wish to use this API on your query)
+#' @param format.long re-format your resulting \code{data.frame} to a long format
 #'
 #' @author Hugo Fitipaldi
 #'
-#' @return This function returns a \code{data.frame}
+#' @return This function returns a \code{data.frame} with the list of authors of a queried scientific publication and detected country of affiliations
 #' @export get_affiliations
 #'
 #' @examples
-#' get_affiliations(query = '30237159')
-#' get_affiliations(query = '30237159', format.long = TRUE)
+#' get_affiliations(PMID = '30237159')
+#' get_affiliations(PMID = '30237159', format.long = TRUE)
 #'
 
-get_affiliations <- function(query, email = NULL, format.long = FALSE) {
+get_affiliations <- function(PMID, email = NULL, format.long = FALSE) {
 
   #get the xml of the articles
-  doc <- easyPubMed::get_pubmed_ids(query)
+  doc <- easyPubMed::get_pubmed_ids(PMID)
   doc <- easyPubMed::fetch_pubmed_data(doc)
   doc <- XML::xmlParse(doc)
   #get the authors
