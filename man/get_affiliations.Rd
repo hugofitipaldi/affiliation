@@ -4,25 +4,27 @@
 \alias{get_affiliations}
 \title{Retrieve and recognize affiliation and country of affiliation from PubMed}
 \usage{
-get_affiliations(query, email = NULL, format.long = FALSE)
+get_affiliations(PMID, email = NULL, format.long = FALSE)
 }
 \arguments{
-\item{query}{selects which data set from CSSS you want to download: "national" (default), "county" or "postcode"}
+\item{PMID}{PubMed IDentifier of the publication you wish to query}
 
-\item{format.long}{}
+\item{email}{your email to access the OpenStreetMap API (if you wish to use this API on your query)}
+
+\item{format.long}{re-format your resulting \code{data.frame} to a long format}
 }
 \value{
-This function returns a \code{data.frame}
+This function returns a \code{data.frame} with the list of authors of a queried scientific publication and detected country of affiliations
 }
 \description{
-Identifies country based on affiliation free text field
+Identifies country based on affiliation free-text field
 }
 \details{
-This function was designed to
+This function was designed retrieve and pre-process the affiliation field of PubMed publications and to recognize the specific country of affiliation.
 }
 \examples{
-get_affiliations(query = '30237159')
-get_affiliations(query = '30237159', format.long = TRUE)
+get_affiliations(PMID = '30237159')
+get_affiliations(PMID = '30237159', format.long = TRUE)
 
 }
 \author{

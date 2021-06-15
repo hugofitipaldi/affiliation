@@ -108,18 +108,18 @@ detecting_country_state <- function(x) {
 
 }
 
+#' Detect US states abbreviates
 #'
+#' Finds US state abbreviations.
 #'
-#'
-#'
-#' This function was designed to
+#' This function was designed to detect US state abbreviations. Internal use only.
 #'
 #' @param x free-text (affiliation field)
 #'
 #' @author Hugo Fitipaldi
 #'
 #'
-#' @return This function returns a character string with the name of the country
+#' @return This function returns a character string with the name of the detected US state.
 #' @export detecting_us_states
 #' @examples
 #' detecting_us_states("OH is a United Stated state.")
@@ -172,9 +172,9 @@ detecting_us_states <- function(x) {
 }
 
 
+#' Detect and replace US states abbreviations to full state name.
 #'
-#'
-#'
+#' Finds US state abbreviations and replace them to the states full name within a text.
 #'
 #' This function was designed to replace US states abbreviations to its full name within a text.
 #'
