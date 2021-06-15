@@ -198,7 +198,7 @@ replace_us_state <- function(x) {
   text <- gsub('centre','', text)
   text <- gsub('university','', text)
 
-  text_df <- data.frame(str_split(text, " "))
+  text_df <- data.frame(stringr::str_split(text, " "))
   names(text_df) <- "splitted"
   for (i in 1:nrow(text_df)) {
     text_df$new_text[i] <- affiliation::detecting_us_states(text_df$splitted[i])

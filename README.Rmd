@@ -1,0 +1,43 @@
+---
+output: github_document
+---
+
+# affiliarion <a href='https://github.com/hugofitipaldi/affiliation'><img src='man/figures/hex_aff.png' width="15%" align="right"  /></a>
+
+```{r echo = FALSE}
+library(badger)
+```
+
+<!-- badges: start - -->
+
+`r badge_devel("hugofitipaldi/affiliation", "blue")`
+`r badge_lifecycle("experimental", "orange")`
+`r badge_last_commit("hugofitipaldi/affiliation")`
+
+<!-- badges: end -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+
+## Installation
+
+Development version of the package can be installed from Github with:
+
+``` r
+install.packages("remotes")
+remotes::install_github("hugofitipaldi/affiliation")
+```
+
+## Country of affiliation
+
+```{r example}
+affiliation::get_affiliations(PMID = "30237159")
+
+```
