@@ -108,3 +108,103 @@ detecting_country_state <- function(x) {
 
 }
 
+#'
+#'
+#'
+#'
+#' This function was designed to
+#'
+#' @param x free-text (affiliation field)
+#'
+#' @author Hugo Fitipaldi
+#'
+#'
+#' @return This function returns a character string with the name of the country
+#' @export detecting_us_states
+#' @examples
+#' detecting_us_states("OH is a United Stated state.")
+#'
+
+detecting_us_states <- function(x) {
+
+  text <- x
+  text <- stringi::stri_trans_general(str = text, id = "Latin-ASCII")
+  text <- gsub('[[:digit:]]+', '', text)
+  text <- gsub('[[:punct:] ]+',' ', text)
+  text <- gsub('centre','', text)
+  text <- gsub('university','', text)
+
+  abbreviation    <- c("AL",
+             "AK", "AZ", "KS", "UT", "CO", "CT",
+             "DE", "FL", "GA", "HI", "ID", "IL",
+             "IN", "IA", "AR", "KY", "LA", "ME",
+             "MD", "MA", "MI", "MN", "MS", "MO",
+             "MT", "NE", "NV", "NH", "NJ", "NM",
+             "NY", "NC", "ND", "OH", "OK", "OR",
+             "PA", "RI", "SC", "SD", "TN", "TX",
+             "CA", "VT", "VA", "WA", "WV", "WI",
+             "WY", "DC")
+  state_name    <- c("Alabama",
+             "Alaska", "Arizona", "Kansas",
+             "Utah", "Colorado", "Connecticut",
+             "Delaware", "Florida", "Georgia",
+             "Hawaii", "Idaho", "Illinois",
+             "Indiana", "Iowa", "Arkansas",
+             "Kentucky", "Louisiana", "Maine",
+             "Maryland", "Massachusetts", "Michigan",
+             "Minnesota", "Mississippi", "Missouri",
+             "Montana", "Nebraska", "Nevada",
+             "New Hampshire", "New Jersey", "New Mexico",
+             "New York", "North Carolina", "North Dakota",
+             "Ohio", "Oklahoma", "Oregon",
+             "Pennsylvania", "Rhode Island", "South Carolina",
+             "South Dakota", "Tennessee", "Texas",
+             "California", "Vermont", "Virginia",
+             "Washington", "West Virginia", "Wisconsin",
+             "Wyoming", "District of Columbia")
+
+  US_states <- data.frame(abbreviation, state_name)
+
+  US_states$abbreviation <- paste0('\\b' ,US_states$abbreviation, '\\b')
+
+  return(toString(unique(US_states[stringr::str_detect(text, US_states$abbreviation) == TRUE,]$state_name)))
+
+}
+
+
+#'
+#'
+#'
+#'
+#' This function was designed to replace US states abbreviations to its full name within a text.
+#'
+#' @param x free-text (affiliation field)
+#'
+#' @author Hugo Fitipaldi
+#'
+#'
+#' @return
+#' @export replace_us_state
+#' @examples
+#' replace_us_state("OH is a United Stated state.")
+#'
+
+replace_us_state <- function(x) {
+  text <- x
+  text <- stringi::stri_trans_general(str = text, id = "Latin-ASCII")
+  text <- gsub('[[:digit:]]+', '', text)
+  #text <- qdap::rm_stopwords(text, separate = FALSE)
+  text <- gsub('[[:punct:] ]+',' ', text)
+  text <- gsub('centre','', text)
+  text <- gsub('university','', text)
+
+  text_df <- data.frame(str_split(text, " "))
+  names(text_df) <- "splitted"
+  for (i in 1:nrow(text_df)) {
+    text_df$new_text[i] <- affiliation::detecting_us_states(text_df$splitted[i])
+  }
+  text_df[text_df$new_text == "",]$new_text <- text_df[text_df$new_text == "",]$text_df$splitted
+
+  return(paste(text_df$new_text, collapse = " "))
+
+}
