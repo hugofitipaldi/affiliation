@@ -50,9 +50,9 @@ get_affiliations <- function(PMID, email = NULL, format.long = FALSE) {
   data_long <- data_long[!duplicated(data_long),]
   Original_Affiliation_long <- data_long$Affiliation
 
-  for (i in 1:nrow(data_long)) {
-    data_long$Affiliation[i] <- affiliation::replace_us_state(data_long$Affiliation[i])
-  }
+  # for (i in 1:nrow(data_long)) {
+  #   data_long$Affiliation[i] <- affiliation::replace_us_state(data_long$Affiliation[i])
+  # }
 
   if (!is.null(email)){
 
