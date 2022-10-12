@@ -20,7 +20,6 @@ auth_aff_dict <- function (authors_names, affiliation_dict) {
   names(authors_df) <- "Authors"
   authors_df$Affiliations <- stringr::str_match_all(authors_df$Authors,"[0-9]+")
 
-  affiliation_dict <- y
   affiliation_dict <- stringr::str_split(affiliation_dict, "[.] [0-9]")
   affiliation_dict <- stringr::str_split(affiliation_dict, "\n[0-9]+ ")
   affiliation_dict <- data.frame(affiliation_dict)
