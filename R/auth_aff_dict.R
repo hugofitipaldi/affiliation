@@ -1,6 +1,6 @@
 #' Retrieve and recognize affiliation and country of affiliation from PMC PubMed Central
 #'
-#' Creates a dictionary-like author-affiliation and dentifies country based on affiliation free-text field
+#' Creates a dictionary-like author-affiliation and identifies country based on affiliation free-text field
 #'
 #' This function was desinged to be applied to PubMed indexed studies published before 2014 (PubMed did not include all author affiliation information in their metadata) and for a few studies > 2014 with non-indexed affiliations.
 #'

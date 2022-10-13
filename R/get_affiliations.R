@@ -110,9 +110,10 @@ get_affiliations <- function(PMID, email = NULL, format.long = FALSE) {
         }
 
       for(i in 1:nrow(data_long)) {
-        if (!is.na(data_long$Affiliation[i]) & affiliation::detecting_country_state(data_long$Affiliation[i]) != ""){
-          data_long$Affiliation[i] <-  affiliation::detecting_country_state(data_long$Affiliation[i])}
-        }
+        if ((data_long$Affiliation[i] == "" | stringr::str_detect(data_long$Affiliation[i], ", ")) & !is.na(data_long$Affiliation[i]) & affiliation::detecting_country_state(affiliation::replace_us_state(data_long$Affiliation[i])) != ""){
+          data_long$Affiliation[i] <- affiliation::replace_us_state(data_long$Affiliation[i])
+          data_long$Affiliation[i] <- affiliation::detecting_country_state(data_long$Affiliation[i])}
+      }
 
       data_wide <- tidyr::spread(data_long, aff_number, Affiliation)
       pubmed_df <- data_wide
