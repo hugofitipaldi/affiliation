@@ -12,6 +12,13 @@
 #' @return This function returns a \code{data.frame} with the list of authors of a queried scientific publication and detected country of affiliations
 #' @export auth_aff_dict
 #'
+#' @examples
+#' authors_names <- "John Doe,1 Jane Doe,2,3"
+#' authors_names <- gsub("([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-9][0-9])","\\1,",authors_names)
+#' authors_name <- gsub(",",",",authors_names)
+#' affiliation_dict <- "1 Affiliation ONE, Recife, Brazil\n2 Affiliation TWO, Kent, Ohio, United States\n3 Affiliation THREE, Malmo, Sweden"
+#' auth_aff_dict(authors_names, affiliation_dict)
+
 
 auth_aff_dict <- function (authors_names, affiliation_dict) {
 
@@ -110,6 +117,9 @@ auth_aff_dict <- function (authors_names, affiliation_dict) {
 
   authors_df$to_delete <- NULL
 
+  Position <- 1:nrow(authors_df)
+  authors_df <- cbind(Position, authors_df)
+
   authors_df <- authors_df %>%
     mutate(Affiliations = strsplit(as.character(Affiliations), "_")) %>%
     unnest(Affiliations)
@@ -134,7 +144,10 @@ auth_aff_dict <- function (authors_names, affiliation_dict) {
   authors_df <- authors_df %>%
     group_by(Authors) %>%
     mutate(Affiliations = paste0(Affiliations, collapse = "_"), countries_of_affiliation = paste0(countries_of_affiliation, collapse = "_")) %>%
-    slice(1L)
+    slice(1L) %>%
+    arrange(Position)
+
+  authors_df$Position <- NULL
 
   names(authors_df) <- c("author_fullname", "affiliation_freetext", "country_of_affiliation")
 
