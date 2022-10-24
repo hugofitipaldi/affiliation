@@ -43,10 +43,13 @@ extraction of country of affiliation can be done by the
 `auth_aff_dict()` function.
 
 This function was built based on the structure in which
-author-affiliation information is presented:
+author-affiliation information is presented at PubMed Central (PMC):
 
-Thus, one can simply copy and paste this information and use it as
-parameters for the the function:
+<img src="man/figures/aff_example.png" width="100%" />
+
+The same dictionary-like structure is also extensively used in the PDF
+formats of publications, thus, one can simply copy and paste this
+information and use it as parameters for the the function:
 
 ``` r
 authors_names <- "Peter M. Visscher,1,2 Matthew A. Brown,1 Mark I. McCarthy,3,4 Jian Yang,5"
