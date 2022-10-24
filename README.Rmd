@@ -1,5 +1,6 @@
 ---
 output: github_document
+bibliography: grateful-refs.bib
 ---
 
 # affiliarion <a href='https://github.com/hugofitipaldi/affiliation'><img src='man/figures/hex_aff.png' width="15%" align="right"  /></a>
@@ -35,14 +36,16 @@ install.packages("remotes")
 remotes::install_github("hugofitipaldi/affiliation")
 ```
 
-## Country of affiliation
+## Usage
+
+### Country of affiliation
 
 ```{r example}
 affiliation::get_affiliations(PMID = "30237159")
 
 ```
 
-## Function for non-indexed publications
+### Function for non-indexed publications
 
 For publications in PubMed with lack of affiliation information, such as for publications prior to 2014 (when PubMed only included the first author affiliation among the accessible metadata information), the extraction of country of affiliation can be done by the `auth_aff_dict()` function.
 
@@ -63,3 +66,8 @@ affiliation_dict <- "1 University of Queensland Diamantina Institute, Princess A
 
 affiliation::auth_aff_dict(authors_names, affiliation_dict)
 ```
+
+**If you use this package in you research, please cite:** 
+
+Hugo Fitipaldi, Paul W Franks, *Ethnic, gender and other sociodemographic biases in genome-wide association studies for the most burdensome non-communicable diseases: 2005–2022*, Human Molecular Genetics, 2022;, ddac245, https://doi.org/10.1093/hmg/ddac245
+

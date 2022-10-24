@@ -18,7 +18,9 @@ install.packages("remotes")
 remotes::install_github("hugofitipaldi/affiliation")
 ```
 
-## Country of affiliation
+## Usage
+
+### Country of affiliation
 
 ``` r
 affiliation::get_affiliations(PMID = "30237159")
@@ -34,7 +36,7 @@ affiliation::get_affiliations(PMID = "30237159")
 #> 4 Genetic and Molecular Epidemiology Unit, Department of Clinical Sciences Malmö, Lund University Diabetes Centre, Skåne University Hospital, Malmö, Sweden paul.franks@med.lu.se._Oxford Centre for Diabetes, Endocrinology and Metabolism, University of Oxford, Oxford, U.K._Department of Nutrition, Harvard T.H. Chan School of Public Health, Boston, MA._Department of Public Health and Clinical Medicine, Umeå University, Umeå, Sweden.
 ```
 
-## Function for non-indexed publications
+### Function for non-indexed publications
 
 For publications in PubMed with lack of affiliation information, such as
 for publications prior to 2014 (when PubMed only included the first
@@ -70,3 +72,10 @@ affiliation::auth_aff_dict(authors_names, affiliation_dict)
 #> 3 Mark I. McCarthy  United Kingdom_United Kingdom Wellcome Trust Centre for Hum…
 #> 4 Jian Yang         Australia                     Queensland Institute of Medic…
 ```
+
+**If you use this package in you research, please cite:**
+
+Hugo Fitipaldi, Paul W Franks, *Ethnic, gender and other
+sociodemographic biases in genome-wide association studies for the most
+burdensome non-communicable diseases: 2005–2022*, Human Molecular
+Genetics, 2022;, ddac245, <https://doi.org/10.1093/hmg/ddac245>

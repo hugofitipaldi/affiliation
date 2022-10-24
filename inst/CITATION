@@ -1,0 +1,13 @@
+citHeader("To cite affiliation in publications use:")
+
+citEntry(
+  entry    = "Article",
+  title    =  "Ethnic, gender and other sociodemographic biases in genome-wide association studies for the most burdensome non-communicable diseases: 2005–2022",
+  author   = "Hugo Fitipaldi, Paul W Franks",
+  journal  = "Human Molecular Genetics",
+  year     = 2022,
+  url      = "https://doi.org/10.1093/hmg/ddac245",
+  textVersion = paste(
+
+  )
+)

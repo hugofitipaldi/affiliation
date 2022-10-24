@@ -15,15 +15,13 @@ auth_aff_dict(authors_names, affiliation_dict)
 This function returns a \code{data.frame} with the list of authors of a queried scientific publication and detected country of affiliations
 }
 \description{
-Creates a dictionary-like author-affiliation and dentifies country based on affiliation free-text field
+Creates a dictionary-like author-affiliation and identifies country based on affiliation free-text field
 }
 \details{
 This function was desinged to be applied to PubMed indexed studies published before 2014 (PubMed did not include all author affiliation information in their metadata) and for a few studies > 2014 with non-indexed affiliations.
 }
 \examples{
 authors_names <- "John Doe,1 Jane Doe,2,3"
-authors_names <- gsub("([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-9][0-9])","\\\\1,",authors_names)
-authors_name <- gsub(",",",",authors_names)
 affiliation_dict <- "1 Affiliation ONE, Recife, Brazil\n2 Affiliation TWO, Kent, Ohio, United States\n3 Affiliation THREE, Malmo, Sweden"
 auth_aff_dict(authors_names, affiliation_dict)
 }
