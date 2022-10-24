@@ -50,7 +50,6 @@ parameters for the the function:
 
 ``` r
 authors_names <- "Peter M. Visscher,1,2 Matthew A. Brown,1 Mark I. McCarthy,3,4 Jian Yang,5"
-authors_names <- gsub("([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-9][0-9])","\\1,",authors_names)
 
 affiliation_dict <- "1 University of Queensland Diamantina Institute, Princess Alexandra Hospital, Brisbane, Queensland 4102, Australia
 2 The Queensland Brain Institute, The University of Queensland, Brisbane, Queensland 4072, Australia

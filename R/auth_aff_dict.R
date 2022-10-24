@@ -14,13 +14,14 @@
 #'
 #' @examples
 #' authors_names <- "John Doe,1 Jane Doe,2,3"
-#' authors_names <- gsub("([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-9][0-9])","\\1,",authors_names)
 #' affiliation_dict <- "1 Affiliation ONE, Recife, Brazil\n2 Affiliation TWO, Kent, Ohio, United States\n3 Affiliation THREE, Malmo, Sweden"
 #' auth_aff_dict(authors_names, affiliation_dict)
 
 
 auth_aff_dict <- function (authors_names, affiliation_dict) {
 
+  authors_names <- gsub("([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-9][0-9])","\\1,",authors_names)
+  authors_names <- gsub(",,",",",authors_names)
   authors_names <- stringr::str_split(authors_names, ", ")
   authors_df <- data.frame(authors_names)
   names(authors_df) <- "Authors"
