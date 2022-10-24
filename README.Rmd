@@ -41,3 +41,26 @@ remotes::install_github("hugofitipaldi/affiliation")
 affiliation::get_affiliations(PMID = "30237159")
 
 ```
+
+## Function for non-indexed publications
+
+For publications in PubMed with lack of affiliation information, such as for publications prior to 2014 (when PubMed only included the first author affiliation among the accessible metadata information), the extraction of country of affiliation can be done by the `auth_aff_dict()` function.
+
+This function was built based on the structure in which author-affiliation information is presented:
+
+
+Thus, one can simply copy and paste this information and use it as parameters for the the function:
+
+```{r warning=FALSE}
+authors_names <- "Peter M. Visscher,1,2 Matthew A. Brown,1 Mark I. McCarthy,3,4 Jian Yang,5"
+authors_names <- gsub("([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-9][0-9])","\\1,",authors_names)
+authors_name <- gsub(",",",",authors_names)
+
+affiliation_dict <- "1 University of Queensland Diamantina Institute, Princess Alexandra Hospital, Brisbane, Queensland 4102, Australia
+2 The Queensland Brain Institute, The University of Queensland, Brisbane, Queensland 4072, Australia
+3 Wellcome Trust Centre for Human Genetics, University of Oxford, Oxford OX3 7BN, UK
+4 Oxford Centre for Diabetes, Endocrinology and Metabolism, Churchill Hospital Old Road, Headington Oxford OX3 7LJ, UK
+5 Queensland Institute of Medical Research, 300 Herston Road, Brisbane, Queensland 4006, Australia"
+
+affiliation::auth_aff_dict(authors_names, affiliation_dict)
+```

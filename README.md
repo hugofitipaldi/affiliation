@@ -33,3 +33,39 @@ affiliation::get_affiliations(PMID = "30237159")
 #> 3                                                                                                                                                                                           Diabetes Unit and Center for Genomic Medicine, Massachusetts General Hospital, Boston, MA._Programs in Metabolism and Medical and Population Genetics, Broad Institute, Cambridge, MA._Department of Medicine, Harvard Medical School, Boston, MA._NA
 #> 4 Genetic and Molecular Epidemiology Unit, Department of Clinical Sciences Malmö, Lund University Diabetes Centre, Skåne University Hospital, Malmö, Sweden paul.franks@med.lu.se._Oxford Centre for Diabetes, Endocrinology and Metabolism, University of Oxford, Oxford, U.K._Department of Nutrition, Harvard T.H. Chan School of Public Health, Boston, MA._Department of Public Health and Clinical Medicine, Umeå University, Umeå, Sweden.
 ```
+
+## Function for non-indexed publications
+
+For publications in PubMed with lack of affiliation information, such as
+for publications prior to 2014 (when PubMed only included the first
+author affiliation among the accessible metadata information), the
+extraction of country of affiliation can be done by the
+`auth_aff_dict()` function.
+
+This function was built based on the structure in which
+author-affiliation information is presented:
+
+Thus, one can simply copy and paste this information and use it as
+parameters for the the function:
+
+``` r
+authors_names <- "Peter M. Visscher,1,2 Matthew A. Brown,1 Mark I. McCarthy,3,4 Jian Yang,5"
+authors_names <- gsub("([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-9][0-9])","\\1,",authors_names)
+authors_name <- gsub(",",",",authors_names)
+
+affiliation_dict <- "1 University of Queensland Diamantina Institute, Princess Alexandra Hospital, Brisbane, Queensland 4102, Australia
+2 The Queensland Brain Institute, The University of Queensland, Brisbane, Queensland 4072, Australia
+3 Wellcome Trust Centre for Human Genetics, University of Oxford, Oxford OX3 7BN, UK
+4 Oxford Centre for Diabetes, Endocrinology and Metabolism, Churchill Hospital Old Road, Headington Oxford OX3 7LJ, UK
+5 Queensland Institute of Medical Research, 300 Herston Road, Brisbane, Queensland 4006, Australia"
+
+affiliation::auth_aff_dict(authors_names, affiliation_dict)
+#> # A tibble: 4 × 3
+#> # Groups:   author_fullname [4]
+#>   author_fullname   country_of_affiliation        affiliation_freetext          
+#>   <chr>             <chr>                         <chr>                         
+#> 1 Peter M. Visscher Australia_Australia           1 University of Queensland Di…
+#> 2 Matthew A. Brown  Australia                     1 University of Queensland Di…
+#> 3 Mark I. McCarthy  United Kingdom_United Kingdom Wellcome Trust Centre for Hum…
+#> 4 Jian Yang         Australia                     Queensland Institute of Medic…
+```

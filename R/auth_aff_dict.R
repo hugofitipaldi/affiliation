@@ -121,8 +121,8 @@ auth_aff_dict <- function (authors_names, affiliation_dict) {
   authors_df <- cbind(Position, authors_df)
 
   authors_df <- authors_df %>%
-    mutate(Affiliations = strsplit(as.character(Affiliations), "_")) %>%
-    unnest(Affiliations)
+    dplyr::mutate(Affiliations = strsplit(as.character(Affiliations), "_")) %>%
+    tidyr::unnest(Affiliations)
 
   authors_df$countries_of_affiliation <- ""
 
@@ -142,10 +142,10 @@ auth_aff_dict <- function (authors_names, affiliation_dict) {
   }
 
   authors_df <- authors_df %>%
-    group_by(Authors) %>%
-    mutate(Affiliations = paste0(Affiliations, collapse = "_"), countries_of_affiliation = paste0(countries_of_affiliation, collapse = "_")) %>%
-    slice(1L) %>%
-    arrange(Position)
+    dplyr::group_by(Authors) %>%
+    dplyr::mutate(Affiliations = paste0(Affiliations, collapse = "_"), countries_of_affiliation = paste0(countries_of_affiliation, collapse = "_")) %>%
+    dplyr::slice(1L) %>%
+    dplyr::arrange(Position)
 
   authors_df$Position <- NULL
 
