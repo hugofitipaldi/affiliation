@@ -1,5 +1,5 @@
 
-# affiliarion <a href='https://github.com/hugofitipaldi/affiliation'><img src='man/figures/hex_aff.png' width="15%" align="right"  /></a>
+# affiliation <a href='https://github.com/hugofitipaldi/affiliation'><img src='man/figures/hex_aff.png' width="15%" align="right"  /></a>
 
 <!-- badges: start - -->
 

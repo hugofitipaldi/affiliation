@@ -3,7 +3,7 @@ output: github_document
 bibliography: grateful-refs.bib
 ---
 
-# affiliarion <a href='https://github.com/hugofitipaldi/affiliation'><img src='man/figures/hex_aff.png' width="15%" align="right"  /></a>
+# affiliation <a href='https://github.com/hugofitipaldi/affiliation'><img src='man/figures/hex_aff.png' width="15%" align="right"  /></a>
 
 ```{r echo = FALSE}
 library(badger)
