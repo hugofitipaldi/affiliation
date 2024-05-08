@@ -17,7 +17,7 @@
 url_nominatim_search <- function(search_query_url, country_url,
                                  language_url, email_url) {
   # nominatim search api url
-  url_nominatim_search_api <- "https://nominatim.openstreetmap.org/search/"
+  url_nominatim_search_api <- "https://nominatim.openstreetmap.org/search"
   # convert input into a list
   search_query_url <- sapply(search_query_url, as.list)
   # percent-encode search request
